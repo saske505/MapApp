@@ -13,6 +13,7 @@
           value="true"
           v-for="(item, i) in items"
           :key="i"
+          :to="item.path"
         >
           <v-list-tile-action>
             <v-icon light v-html="item.icon"></v-icon>
@@ -57,7 +58,7 @@
       </v-btn>
     </v-toolbar>
     <main>
-      
+
       <v-content>
         <v-container fluid>
           <v-slide-y-transition mode="out-in">
@@ -97,8 +98,13 @@
         drawer: true,
         fixed: false,
         items: [{
+          icon: 'home',
+          title: 'Home',
+          path: '/'
+        }, {
           icon: 'bubble_chart',
-          title: 'Inspire'
+          title: 'About',
+          path: '/about'
         }],
         miniVariant: false,
         right: true,
