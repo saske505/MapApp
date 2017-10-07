@@ -9,7 +9,9 @@ export default new Router({
     {
       path: '/',
       name: 'About',
-      component: About
+      component:
+      About,
+      Map
     }
   ]
 })

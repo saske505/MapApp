@@ -2,18 +2,18 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
 import Vue from 'vue'
-
+import Vue2Leaflet from 'vue2-leaflet'
 import {
-  Vuetify,
-  VApp,
-  VNavigationDrawer,
-  VFooter,
-  VList,
-  VBtn,
-  VIcon,
-  VGrid,
-  VToolbar,
-  transitions
+    Vuetify,
+    VApp,
+    VNavigationDrawer,
+    VFooter,
+    VList,
+    VBtn,
+    VIcon,
+    VGrid,
+    VToolbar,
+    transitions
 } from 'vuetify'
 
 import App from './App'
@@ -42,3 +42,7 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+Vue.component('v-map', Vue2Leaflet.Map)
+Vue.component('v-tilelayer', Vue2Leaflet.TileLayer)
+Vue.component('v-marker', Vue2Leaflet.Marker)

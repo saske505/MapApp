@@ -1,8 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\components",
+    "\\src\\router",
+    "\\static",
+    "\\test"
   ],
-  "SelectedNode": "\\src\\App.vue",
+  "SelectedNode": "\\src\\main.js",
   "PreviewInSolutionExplorer": false
 }

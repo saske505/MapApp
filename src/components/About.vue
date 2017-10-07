@@ -1,53 +1,65 @@
 <template>
-  <div class="about">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
-  </div>
+
+  
+      <v-map style="height: 90%" :zoom="zoom" :center="center">
+        <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
+        <v-marker :lat-lng="marker"></v-marker>
+      </v-map>
+
 </template>
 
 <script>
-export default {
-  name: 'about',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  import Vue2Leaflet from 'vue2-leaflet'
+  import L from 'leaflet'
+  export default {
+    name: 'about',
+    components: {
+      'v-map': Vue2Leaflet.Map,
+      'v-tilelayer': Vue2Leaflet.TileLayer,
+      'v-marker': Vue2Leaflet.Marker
+    },
+    data () {
+      return {
+        zoom: 13,
+        center: L.latLng(47.413220, -1.219482),
+        url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        marker: L.latLng(47.413220, -1.219482)
+      }
     }
   }
-}
 </script>
+<style>
+  .leaflet-fake-icon-image-2x {
+    background-image: url(/marker-icon-2x.png);
+  }
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
+  .leaflet-fake-icon-shadow {
+    background-image: url(/leaflet/dist/images/marker-shadow.png);
+  }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  @import "~leaflet/dist/leaflet.css";
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+  #side {
+    float: left;
+    width: 200px;
+  }
 
-a {
-  color: #42b983;
-}
+
+  #top_div {
+    position: absolute;
+    overflow-x: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+   bottom:0;
+  }
+
+  #bottom_div {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 200px;
+    bottom: 0;
+  }
 </style>

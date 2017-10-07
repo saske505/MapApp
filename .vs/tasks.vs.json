@@ -5,6 +5,11 @@
       "taskName": "task-App",
       "appliesTo": "src/App.vue",
       "type": "launch"
+    },
+    {
+      "taskName": "task-main",
+      "appliesTo": "src/stylus/main.styl",
+      "type": "launch"
     }
   ]
 }
