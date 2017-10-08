@@ -1,14 +1,14 @@
 <template>
   <div class="login">
     <v-form v-model="valid">
-      <v-text-field label="Name"
-                    v-model="name"
-                    :rules="nameRules"
-                    :counter="10"
-                    required></v-text-field>
-      <v-text-field label="E-mail"
+      <v-text-field label="Email"
                     v-model="email"
                     :rules="emailRules"
+                    :counter="10"
+                    required></v-text-field>
+      <v-text-field label="Password"
+                    v-model="password"
+                    :rules="passwordRules"
                     required></v-text-field>
       <button v-on:click="signIn">Sign in</button>
       <span>Don't have an account yet? <router-link to="/sign-up">create one</router-link> here</span>
@@ -31,7 +31,7 @@
       signIn: function () {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {
-            this.$router.replace('hello')
+            this.$router.replace('Home')
           },
           (err) => {
             alert('ooops' + err.message)
