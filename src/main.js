@@ -2,7 +2,9 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
 import Vue from 'vue'
-import Vue2Leaflet from 'vue2-leaflet'
+import VueFire from 'vuefire'
+import firebase from 'firebase'
+
 import {
     Vuetify,
     VApp,
@@ -13,12 +15,16 @@ import {
     VIcon,
     VGrid,
     VToolbar,
+    VCard,
+    VForm,
+    VTextField,
     transitions
 } from 'vuetify'
 
 import App from './App'
 import router from './router'
 
+Vue.use(VueFire)
 Vue.use(Vuetify, {
   components: {
     VApp,
@@ -29,20 +35,34 @@ Vue.use(Vuetify, {
     VIcon,
     VGrid,
     VToolbar,
+    VCard,
+    VForm,
+    VTextField,
     transitions
   }
 })
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
-})
+let app
+let config = {
+  apiKey: 'AIzaSyDIyRzOXRYzriVjb3DnqBoRMQdF1hvcMWI',
+  authDomain: 'cropchat-a6b10.firebaseapp.com',
+  databaseURL: 'https://cropchat-a6b10.firebaseio.com',
+  projectId: 'cropchat-a6b10',
+  storageBucket: 'cropchat-a6b10.appspot.com',
+  messagingSenderId: '565134856668'
+}
 
-Vue.component('v-map', Vue2Leaflet.Map)
-Vue.component('v-tilelayer', Vue2Leaflet.TileLayer)
-Vue.component('v-marker', Vue2Leaflet.Marker)
+firebase.initializeApp(config)
+firebase.auth().onAuthStateChanged(function (user) {
+  if (!app) {
+    /* eslint-disable no-new */
+    app = new Vue({
+      el: '#app',
+      template: '<App/>',
+      components: { App },
+      router
+    })
+  }
+})

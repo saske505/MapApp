@@ -1,18 +1,14 @@
-<template>
-
-  
-      <v-map style="height: 90%" :zoom="zoom" :center="center">
-        <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
-        <v-marker :lat-lng="marker"></v-marker>
-      </v-map>
-
+<template>  
+    
+  <button v-on:click="logout">Logout</button>
 </template>
 
 <script>
+  import firebase from 'firebase'
   import Vue2Leaflet from 'vue2-leaflet'
   import L from 'leaflet'
   export default {
-    name: 'about',
+    name: 'home',
     components: {
       'v-map': Vue2Leaflet.Map,
       'v-tilelayer': Vue2Leaflet.TileLayer,
@@ -21,10 +17,17 @@
     data () {
       return {
         zoom: 13,
-        center: L.latLng(47.413220, -1.219482),
+        center: L.latLng(-25.7583818, 27.9177589),
         url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        marker: L.latLng(47.413220, -1.219482)
+        attribution: '',
+        marker: L.latLng(-25.7583818, 27.9177589)
+      }
+    },
+    methods: {
+      logout: function () {
+        firebase.auth().signOut().then(() => {
+          this.$router.replace('login')
+        })
       }
     }
   }

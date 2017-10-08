@@ -101,21 +101,15 @@
           icon: 'home',
           title: 'Home',
           path: '/'
-        }, {
-          icon: 'bubble_chart',
-          title: 'About',
-          path: '/about'
         }],
         miniVariant: false,
-        right: true,
+        right: false,
         rightDrawer: false,
-        title: 'Vuetify.js'
+        title: ''
       }
     }
   }
-
 </script>
-
 <style lang="stylus">
   @import './stylus/main';
 </style>

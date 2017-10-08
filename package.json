@@ -16,7 +16,9 @@
     "vue": "^2.4.2",
     "vue-router": "^2.7.0",
     "vuetify": "^0.16.1",
-    "vue2-leaflet": "0.0.55"
+    "vue2-leaflet": "0.0.55",
+    "firebase": "4.5.0",
+    "vuefire": "1.4.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
