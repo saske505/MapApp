@@ -5,7 +5,7 @@
         <v-map :zoom="zoom" :center="center">
           <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
           <v-marker :lat-lng="marker"></v-marker>
-        </v-map>
+        </v-map>   
       </v-flex>
     </v-layout>
   </v-container>
@@ -15,7 +15,7 @@
   import firebase from 'firebase'
   import Vue2Leaflet from 'vue2-leaflet'
   import L from 'leaflet'
-  //  import postLocation from '@/components/PostLocation'
+
   export default {
     name: 'about',
     components: {
