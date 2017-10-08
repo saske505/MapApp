@@ -59,7 +59,7 @@
     </v-toolbar>
     <main>
       <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" :overlay=false>
-        <v-btn color="primary" dark slot="activator">Open Dialog</v-btn>
+        <v-btn color="primary" dark slot="activator">Open</v-btn>
         <v-card>
           <v-toolbar dark class="primary">
             <v-btn icon @click.native="dialog = false" dark>
@@ -120,7 +120,7 @@
         </v-card>
       </v-dialog>
       <router-view></router-view>
-           
+
     </main>
     <v-navigation-drawer
       temporary
@@ -239,4 +239,8 @@
 
 <style lang="stylus">
   @import './stylus/main';
+
+  .dialog__container{
+    position: fixed;
+  }
 </style>

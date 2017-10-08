@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-md text-xs-center>
+  <v-container fluid>
     <v-layout row wrap>
       <v-flex xs12>
         <v-map :zoom="zoom" :center="center">

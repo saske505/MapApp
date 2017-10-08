@@ -14,7 +14,7 @@
                     label="Select"
                     autocomplete></v-select>
           <v-btn color="warning" dark v-on:click="postLocation">Post</v-btn>
-          
+
         </v-form>
       </v-flex>
     </v-layout>
