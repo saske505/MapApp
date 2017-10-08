@@ -6,7 +6,10 @@
           <img :src="location.url" />
         </div>
         <div class="image-card__comment mdl-card__actions">
-          <span>{{ location.comment }}</span>
+          <span>{{ location.info }}</span>
+          <span>{{ location.location }}</span>
+          <span>{{ location.more }}</span>
+          <span>{{ location.created_at }}</span>
         </div>
       </div>
     </v-flex>
@@ -25,9 +28,9 @@ export default {
         this.saveLocationsToCache()
         return reduce(this.$root.location, (locations, firebaseEntry) => {
           locations[firebaseEntry['.key']] = {
-            url: firebaseEntry['url'],
-            comment: firebaseEntry['comment'],
             info: firebaseEntry['info'],
+            location: firebaseEntry['location'],
+            more: firebaseEntry['more'],
             created_at: firebaseEntry['created_at']
           }
           return locations
