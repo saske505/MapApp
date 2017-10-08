@@ -24,6 +24,7 @@ import {
     VSubheader,
     VSelect,
     VDialog,
+    VBottomSheet,
     transitions
 } from 'vuetify'
 
@@ -49,6 +50,7 @@ Vue.use(Vuetify, {
     VSubheader,
     VSelect,
     VDialog,
+    VBottomSheet,
     transitions
   }
 })
