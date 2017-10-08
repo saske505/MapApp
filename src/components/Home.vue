@@ -4,8 +4,8 @@
       <v-flex xs12>
         <v-map :zoom="zoom" :center="center">
           <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
-          <v-marker :lat-lng="marker"></v-marker>
-        </v-map>   
+          <v-marker v-for="item in markers" :key="item.id" :lat-lng="item.position" :visible="item.visible"></v-marker>
+        </v-map>
       </v-flex>
     </v-layout>
   </v-container>
@@ -16,12 +16,21 @@
   import Vue2Leaflet from 'vue2-leaflet'
   import L from 'leaflet'
 
+  delete L.Icon.Default.prototype._getIconUrl
+
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+    iconUrl: require('leaflet/dist/images/marker-icon.png'),
+    shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+  })
+
   export default {
     name: 'about',
     components: {
       'v-map': Vue2Leaflet.Map,
       'v-tilelayer': Vue2Leaflet.TileLayer,
       'v-marker': Vue2Leaflet.Marker
+
     },
     data () {
       return {
@@ -29,7 +38,12 @@
         center: L.latLng(-25.7583818, 27.9177589),
         url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
         attribution: '',
-        marker: L.latLng(-25.7583818, 27.9177589)
+        markers: [
+          { id: '1', position: {lat: 51.505, lng: -0.09}, tooltip: 'tooltip for marker1', draggable: true, visible: true },
+          { id: '2', position: {lat: 51.895, lng: -0.09}, tooltip: 'tooltip for marker2', draggable: true, visible: false },
+          { id: '3', position: {lat: 52.005, lng: -0.09}, tooltip: 'tooltip for marker3', draggable: true, visible: true },
+          { id: '4', position: {lat: 53.705, lng: -0.09}, tooltip: 'tooltip for marker4', draggable: true, visible: false }
+        ]
       }
     },
     methods: {
@@ -42,15 +56,8 @@
   }
 </script>
 <style>
-  .leaflet-fake-icon-image-2x {
-    background-image: url(/marker-icon-2x.png);
-  }
 
-  .leaflet-fake-icon-shadow {
-    background-image: url(/leaflet/dist/images/marker-shadow.png);
-  }
-
-  @import "~leaflet/dist/leaflet.css";
+  @import '~leaflet/dist/leaflet.css';
 
   #side {
     float: left;

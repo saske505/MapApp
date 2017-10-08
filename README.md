@@ -1,27 +1,43 @@
-# new
+# Map test app
 
-> A Vue.js project
+~~~ json
 
-## Build Setup
+{
+"Profiles": {
+    "profile1" : {
+      "_id" : 12345,
+      "created" : "2014-06-25T00:00:00.000Z",
+      "email" : [ "jd@example.com", "jd@example.org" ],
+      "name" : "John",
+       "surname" : "Doe",
+      "phones" : {
+      "home" : "800-123-4567",
+      "mobile" : "877-123-1234"
+      }
+    }
+  },
 
-``` bash
-# install dependencies
-npm install
+  "Incidents": {
+    "inc-1": {
+    "user": 12345,
+    "created": "2014-06-25T00:00:00.000Z",
+    "id": 12345,
+    "description": "Something happpened so i made a post",
+    "types": [
+      "Assualt",
+      "Murder"
+    ],
+    "location": {
+      "x": "800-123-4567",
+      "y": "877-123-1234"
+    },
+    "photos": [
+      "https://placehold.it/250x250",
+      "https://placehold.it/250x250"
+    ]
 
-# serve with hot reload at localhost:8080
-npm run dev
+}
+}
+}
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+~~~
