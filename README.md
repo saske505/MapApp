@@ -1,6 +1,7 @@
 # Map test app
 
 ~~~ json
+
 {
 "Profiles": {
     "profile1" : {
