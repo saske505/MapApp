@@ -1,53 +1,56 @@
 <template>
-  <v-container grid-list-md text-xs-center>
-    <v-layout row>
-      <v-flex xs12 sm6 offset-sm3>
-        <v-form v-model="valid">
-          <v-text-field label="Location"
-                        v-model="location"></v-text-field>
-          <v-text-field label="Info"
-                        v-model="info"></v-text-field>
-          <v-text-field label="More"
-                        v-model="more"></v-text-field>
-          <v-select v-bind:items="types"
-                    v-model="a1"
-                    label="Select"
-                    autocomplete></v-select>
-          <v-btn color="warning" dark v-on:click="postLocation">Post</v-btn>
+  <div class="text-xs-center">
+    <slot>
+      <v-bottom-sheet v-model="sheet">
 
-        </v-form>
-      </v-flex>
-    </v-layout>
-  </v-container>
+        <v-btn slot="activator" color="purple" dark>Click me</v-btn>
+        <v-list>
+          <v-subheader></v-subheader>
+          <v-form>
+            <v-text-field label="Location"
+                          v-model="location"></v-text-field>
+            <v-text-field label="Info"
+                          v-model="info"></v-text-field>
+            <v-text-field label="More"
+                          v-model="more"></v-text-field>
+            <v-select v-bind:items="items"
+                      v-model="types"
+                      label="Select"
+                      autocomplete></v-select>
+            <v-btn color="warning" dark v-on:click="postLocation">Post</v-btn>
+          </v-form>
+        </v-list>
+      </v-bottom-sheet>
+      </slot>
+</div>     
 </template>
 <script>
   export default {
     data () {
       return {
-        'id': null,
         'location': '',
         'info': '',
         'created_at': '',
         'more': '',
-        a1: null,
-        types: [
+        types: null,
+        items: [
           'murder', 'rape', 'robbery', 'shooting', 'heist'
-        ]
+        ],
+        sheet: false
       }
     },
     methods: {
       postLocation () {
         this.$root.$firebaseRefs.location.push(
           {
-            'id': 0,
             'location': this.location,
             'info': this.info,
             'created_at': -1 * new Date().getTime(),
-            'more': this.more
+            'more': this.more,
+            'types': this.types
           }
         ).then(
-          this.$router.push('/')
-          )
+          this.$router.push('/'))
       }
     }
   }

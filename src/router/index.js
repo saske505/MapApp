@@ -6,6 +6,7 @@ import List from '@/components/List'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import PostLocation from '@/components/PostLocation'
+import Details from '@/components/Details'
 import firebase from 'firebase'
 
 Vue.use(Router)
@@ -47,6 +48,10 @@ var router = new Router({
       meta: {
         requiresAuth: true
       }
+    }, {
+      path: '/detail/:id',
+      name: 'detail',
+      component: Details
     }
   ]
 })
