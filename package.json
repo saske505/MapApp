@@ -18,7 +18,8 @@
     "vuetify": "^0.16.1",
     "vue2-leaflet": "0.0.55",
     "firebase": "4.5.0",
-    "vuefire": "1.4.4"
+    "vuefire": "1.4.4",
+    "sw-precache-webpack-plugin": "^0.11.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

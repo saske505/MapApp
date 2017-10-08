@@ -1,4 +1,4 @@
-<template>
+<template id="home">
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
       <v-flex xs12>
@@ -15,6 +15,7 @@
   import firebase from 'firebase'
   import Vue2Leaflet from 'vue2-leaflet'
   import L from 'leaflet'
+  //  import postLocation from '@/components/PostLocation'
   export default {
     name: 'about',
     components: {

@@ -25,6 +25,8 @@ import {
     VSelect,
     VDialog,
     VBottomSheet,
+    VDivider,
+    VCheckbox,
     transitions
 } from 'vuetify'
 
@@ -51,6 +53,8 @@ Vue.use(Vuetify, {
     VSelect,
     VDialog,
     VBottomSheet,
+    VDivider,
+    VCheckbox,
     transitions
   }
 })
@@ -81,7 +85,8 @@ firebase.auth().onAuthStateChanged(function (user) {
         location: database.ref('location').orderByChild('created_at')
       },
       data: {
-        dialog: false
+        dialog: false,
+        currentView: 'home'
       }
     })
   }
@@ -90,3 +95,18 @@ firebase.auth().onAuthStateChanged(function (user) {
 Vue.component('v-map', Vue2Leaflet.Map)
 Vue.component('v-tilelayer', Vue2Leaflet.TileLayer)
 Vue.component('v-marker', Vue2Leaflet.Marker)
+Vue.component('home', {
+  template: '#home'
+})
+
+Vue.component('bottom-sheet', {
+  template: '#bottom-sheet',
+  data () {
+    return {
+      items: [{
+        'test': 'test'
+      }]
+    }
+  }
+})
+
