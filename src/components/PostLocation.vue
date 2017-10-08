@@ -9,6 +9,10 @@
                         v-model="info"></v-text-field>
           <v-text-field label="More"
                         v-model="more"></v-text-field>
+          <v-select v-bind:items="types"
+                    v-model="a1"
+                    label="Select"
+                    autocomplete></v-select>
           <v-btn color="warning" dark v-on:click="postLocation">Post</v-btn>
           
         </v-form>
@@ -24,7 +28,11 @@
         'location': '',
         'info': '',
         'created_at': '',
-        'more': ''
+        'more': '',
+        a1: null,
+        types: [
+          'murder', 'rape', 'robbery', 'shooting', 'heist'
+        ]
       }
     },
     methods: {

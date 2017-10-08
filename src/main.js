@@ -22,6 +22,8 @@ import {
     VTextField,
     VAvatar,
     VSubheader,
+    VSelect,
+    VDialog,
     transitions
 } from 'vuetify'
 
@@ -45,6 +47,8 @@ Vue.use(Vuetify, {
     VTextField,
     VAvatar,
     VSubheader,
+    VSelect,
+    VDialog,
     transitions
   }
 })
@@ -73,6 +77,9 @@ firebase.auth().onAuthStateChanged(function (user) {
       router,
       firebase: {
         location: database.ref('location').orderByChild('created_at')
+      },
+      data: {
+        dialog: false
       }
     })
   }
