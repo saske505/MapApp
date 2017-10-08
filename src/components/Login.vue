@@ -44,5 +44,7 @@
 </script>
 
 <style scoped>
-
+.login {
+  margin-top:100px;
+}
 </style>
