@@ -1,5 +1,5 @@
 <template>
-  <div class="sign-up">
+  <div class="sign-up" >
     <v-form v-model="valid">
       <v-text-field label="Email"
                     v-model="email"

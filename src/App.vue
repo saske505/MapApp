@@ -57,17 +57,8 @@
         <v-icon>menu</v-icon>
       </v-btn>
     </v-toolbar>
-    <main>
-
-      <v-content>
-        <v-container fluid>
-          <v-slide-y-transition mode="out-in">
-            <v-layout column align-center>
-              <router-view></router-view>
-            </v-layout>
-          </v-slide-y-transition>
-        </v-container>
-      </v-content>
+    <main>              <router-view></router-view>
+           
     </main>
     <v-navigation-drawer
       temporary
@@ -91,12 +82,13 @@
 </template>
 
 <script>
+  import { reduce } from 'lodash'
   export default {
     data () {
       return {
         clipped: false,
         drawer: true,
-        fixed: false,
+        fixed: true,
         items: [{
           icon: 'home',
           title: 'Home',
@@ -107,8 +99,42 @@
         rightDrawer: false,
         title: ''
       }
+    },
+    methods: {
+      displayDetails (id) {
+        this.$router.push({ name: 'detail', params: { id: id } })
+      },
+      getLocation () {
+        if (navigator.onLine) {
+          this.saveLocationToCache()
+          return reduce(this.$root.location, (locations, firebaseEntry) => {
+            locations[firebaseEntry['.key']] = {
+              url: firebaseEntry['url'],
+              comment: firebaseEntry['comment'],
+              info: firebaseEntry['info'],
+              created_at: firebaseEntry['created_at']
+            }
+            return location
+          }, {})
+        } else {
+          return JSON.parse(localStorage.getItem('location'))
+        }
+      },
+      saveLocationsToCache () {
+        this.$root.$firebaseRefs.location.orderByChild('created_at').once('value', (snapchot) => {
+          let cachedLocations = {}
+          snapchot.forEach((locationSnapchot) => {
+            cachedLocations[locationSnapchot.key] = locationSnapchot.val()
+          })
+          localStorage.setItem('locations', JSON.stringify(cachedLocations))
+        })
+      }
+    },
+    mounted () {
+      this.saveLocationsToCache()
     }
-  }
+}
+
 </script>
 <style lang="stylus">
   @import './stylus/main';

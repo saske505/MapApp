@@ -4,6 +4,8 @@
 import Vue from 'vue'
 import VueFire from 'vuefire'
 import firebase from 'firebase'
+import Vue2Leaflet from 'vue2-leaflet'
+import VueResource from 'vue-resource'
 
 import {
     Vuetify,
@@ -25,6 +27,7 @@ import App from './App'
 import router from './router'
 
 Vue.use(VueFire)
+Vue.use(VueResource)
 Vue.use(Vuetify, {
   components: {
     VApp,
@@ -55,6 +58,7 @@ let config = {
 }
 
 firebase.initializeApp(config)
+let database = firebase.database()
 firebase.auth().onAuthStateChanged(function (user) {
   if (!app) {
     /* eslint-disable no-new */
@@ -62,7 +66,14 @@ firebase.auth().onAuthStateChanged(function (user) {
       el: '#app',
       template: '<App/>',
       components: { App },
-      router
+      router,
+      firebase: {
+        location: database.ref('location').orderByChild('created_at')
+      }
     })
   }
 })
+
+Vue.component('v-map', Vue2Leaflet.Map)
+Vue.component('v-tilelayer', Vue2Leaflet.TileLayer)
+Vue.component('v-marker', Vue2Leaflet.Marker)

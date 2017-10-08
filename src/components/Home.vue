@@ -1,6 +1,14 @@
-<template>  
-    
-  <button v-on:click="logout">Logout</button>
+<template>
+  <v-container grid-list-md text-xs-center>
+    <v-layout row wrap>
+      <v-flex xs12>
+        <v-map :zoom="zoom" :center="center">
+          <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
+          <v-marker :lat-lng="marker"></v-marker>
+        </v-map>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -8,7 +16,7 @@
   import Vue2Leaflet from 'vue2-leaflet'
   import L from 'leaflet'
   export default {
-    name: 'home',
+    name: 'about',
     components: {
       'v-map': Vue2Leaflet.Map,
       'v-tilelayer': Vue2Leaflet.TileLayer,

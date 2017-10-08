@@ -1,70 +1,53 @@
-
-  <template>
-
-        <v-container fluid
-                     style="min-height: 0;"
-                     grid-list-lg>
-          <v-layout row wrap>
-            <v-flex xs12>
-              <v-card class="blue-grey darken-2 white--text">
-                <v-card-title primary-title>
-                  <div class="headline">Unlimited music now</div>
-                  <div>Listen to your favorite artists and albums whenenver and wherever, online and offline.</div>
-                </v-card-title>
-                <v-card-actions>
-                  <v-btn flat dark>Listen now</v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-flex>
-            <v-flex xs12>
-              <v-card class="cyan darken-2 white--text">
-                <v-container fluid grid-list-lg>
-                  <v-layout row>
-                    <v-flex xs7>
-                      <div>
-                        <div class="headline">Supermodel</div>
-                        <div>Foster the People</div>
-                      </div>
-                    </v-flex>
-                    <v-flex xs5>
-                      <v-card-media src="/static/doc-images/cards/foster.jpg"
-                                    height="125px"
-                                    contain></v-card-media>
-                    </v-flex>
-                  </v-layout>
-                </v-container>
-              </v-card>
-            </v-flex>
-            <v-flex xs12>
-              <v-card class="purple white--text">
-                <v-container fluid grid-list-lg>
-                  <v-layout row>
-                    <v-flex xs7>
-                      <div>
-                        <div class="headline">Halycon Days</div>
-                        <div>Ellie Goulding</div>
-                      </div>
-                    </v-flex>
-                    <v-flex xs5>
-                      <v-card-media src="/static/doc-images/cards/halcyon.png"
-                                    height="125px"
-                                    contain></v-card-media>
-                    </v-flex>
-                  </v-layout>
-                </v-container>
-              </v-card>
-            </v-flex>
-          </v-layout>
-        </v-container>
+<template>
+  <v-layout>
+    <v-flex xs12 sm6 offset-sm3>
+      <div v-for="(location, id) in getLocations()" class="image-card" @click.prevent="displayDetails(id)">
+        <div v-if="location.url !== '' && location.comment !==''" class="image-card__picture">
+          <img :src="location.url" />
+        </div>
+        <div class="image-card__comment mdl-card__actions">
+          <span>{{ location.comment }}</span>
+        </div>
+      </div>
+    </v-flex>
+  </v-layout>
      
   </template>
-
-
-
 <script>
- 
-  export default {
-     name: 'list'
-   }
+import { reduce } from 'lodash'
+export default {
+  methods: {
+    displayDetails (id) {
+      this.$router.push({ name: 'detail', params: { id: id } })
+    },
+    getLocations () {
+      if (navigator.onLine) {
+        this.saveLocationsToCache()
+        return reduce(this.$root.location, (locations, firebaseEntry) => {
+          locations[firebaseEntry['.key']] = {
+            url: firebaseEntry['url'],
+            comment: firebaseEntry['comment'],
+            info: firebaseEntry['info'],
+            created_at: firebaseEntry['created_at']
+          }
+          return locations
+        }, {})
+      } else {
+        return JSON.parse(localStorage.getItem('locations'))
+      }
+    },
+    saveLocationsToCache () {
+      this.$root.$firebaseRefs.location.orderByChild('created_at').once('value', (snapchot) => {
+        let cachedLocations = {}
+        snapchot.forEach((locationSnapchot) => {
+          cachedLocations[locationSnapchot.key] = locationSnapchot.val()
+        })
+        localStorage.setItem('location', JSON.stringify(cachedLocations))
+      })
+    }
+  },
+  mounted () {
+    this.saveLocationsToCache()
+  }
+}
 </script>
-

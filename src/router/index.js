@@ -2,8 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '@/components/Home'
+import List from '@/components/List'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
+import PostLocation from '@/components/PostLocation'
 import firebase from 'firebase'
 
 Vue.use(Router)
@@ -28,6 +30,20 @@ var router = new Router({
       path: '/Home',
       name: 'Home',
       component: Home,
+      meta: {
+        requiresAuth: true
+      }
+    }, {
+      path: '/list',
+      name: 'List',
+      component: List,
+      meta: {
+        requiresAuth: true
+      }
+    }, {
+      path: '/post',
+      name: 'PostLocation',
+      component: PostLocation,
       meta: {
         requiresAuth: true
       }
