@@ -20,6 +20,8 @@ import {
     VCard,
     VForm,
     VTextField,
+    VAvatar,
+    VSubheader,
     transitions
 } from 'vuetify'
 
@@ -41,6 +43,8 @@ Vue.use(Vuetify, {
     VCard,
     VForm,
     VTextField,
+    VAvatar,
+    VSubheader,
     transitions
   }
 })

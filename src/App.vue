@@ -86,15 +86,23 @@
   export default {
     data () {
       return {
-        clipped: false,
+        clipped: true,
         drawer: true,
-        fixed: true,
+        fixed: false,
         items: [{
           icon: 'home',
           title: 'Home',
           path: '/'
+        }, {
+          icon: 'add',
+          title: 'Post',
+          path: '/post'
+        }, {
+          icon: 'list',
+          title: 'List',
+          path: '/list'
         }],
-        miniVariant: false,
+        miniVariant: true,
         right: false,
         rightDrawer: false,
         title: ''

@@ -1,7 +1,7 @@
 <template>
   <v-container grid-list-md text-xs-center>
-    <v-layout row wrap>
-      <v-flex xs12>
+    <v-layout row>
+      <v-flex xs12 sm6 offset-sm3>
         <v-form v-model="valid">
           <v-text-field label="Location"
                         v-model="location"></v-text-field>
@@ -9,16 +9,14 @@
                         v-model="info"></v-text-field>
           <v-text-field label="More"
                         v-model="more"></v-text-field>
-
-          <button v-on:click="postLocation">Post</button>
-          <span>Don't have an account yet? <router-link to="/sign-up">create one</router-link> here</span>
+          <v-btn color="warning" dark v-on:click="postLocation">Post</v-btn>
+          
         </v-form>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 <script>
-  
   export default {
     data () {
       return {
@@ -46,4 +44,3 @@
     }
   }
 </script>
-

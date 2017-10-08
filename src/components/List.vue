@@ -1,21 +1,34 @@
 <template>
-  <v-layout>
+  <v-layout row>
     <v-flex xs12 sm6 offset-sm3>
-      <div v-for="(location, id) in getLocations()" class="image-card" @click.prevent="displayDetails(id)">
-        <div v-if="location.url !== '' && location.comment !==''" class="image-card__picture">
-          <img :src="location.url" />
-        </div>
-        <div class="image-card__comment mdl-card__actions">
-          <span>{{ location.info }}</span>
-          <span>{{ location.location }}</span>
-          <span>{{ location.more }}</span>
-          <span>{{ location.created_at }}</span>
-        </div>
-      </div>
+      <v-card>
+        <v-toolbar class="teal" dark>
+          <v-toolbar-side-icon></v-toolbar-side-icon>
+          <v-toolbar-title class="text-xs-center">New Chat</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn icon>
+            <v-icon>search</v-icon>
+          </v-btn>
+        </v-toolbar>
+        <v-list subheader>
+          <v-subheader>Recent chat</v-subheader>
+          <v-list-tile avatar v-for="(location, id) in getLocations()" v-bind:key="location.location" @click="">
+            <v-list-tile-avatar>
+
+            </v-list-tile-avatar>
+            <v-list-tile-content>
+              <v-list-tile-title v-html="location.info"></v-list-tile-title>
+            </v-list-tile-content>
+            <v-list-tile-action>
+              <v-icon v-bind:color="location.created_at ? 'teal' : 'grey'">chat_bubble</v-icon>
+            </v-list-tile-action>
+          </v-list-tile>
+        </v-list>       
+      </v-card>
     </v-flex>
   </v-layout>
-     
-  </template>
+
+</template>
 <script>
 import { reduce } from 'lodash'
 export default {
