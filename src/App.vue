@@ -66,7 +66,7 @@
         }, {
           icon: 'room',
           title: 'Map Marker add',
-          path: '/map-marker-add'
+          path: '/PostLocation'
         }, {
           icon: 'vpn_key',
           title: 'Login',
@@ -81,8 +81,12 @@
           path: '/chat'
         }, {
           icon: 'room',
-          title: 'Data test',
-          path: '/db-test'
+          title: 'Create data',
+          path: '/db-add'
+        }, {
+          icon: 'room',
+          title: 'View data',
+          path: '/db-view'
         }],
         miniVariant: true,
         right: false,

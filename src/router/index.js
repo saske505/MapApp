@@ -8,6 +8,8 @@ import SignUp from '@/components/SignUp'
 import PostLocation from '@/components/PostLocation'
 import Details from '@/components/Details'
 // import firebase from 'firebase'
+import dbAdd from '@/components/db-add'
+import dbView from '@/components/db-view'
 
 Vue.use(Router)
 
@@ -15,10 +17,6 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '',
-      name: 'home',
-      component: Home
-    }, {
       path: '/',
       name: 'home',
       component: Home
@@ -35,7 +33,7 @@ export default new Router({
       name: 'Home',
       component: Home
     }, {
-      path: '/post',
+      path: '/postLocation',
       name: 'PostLocation',
       component: PostLocation,
       meta: {
@@ -45,6 +43,14 @@ export default new Router({
       path: '/detail/:id',
       name: 'detail',
       component: Details
+    }, {
+      path: '/db-add',
+      name: 'db-add',
+      component: dbAdd
+    }, {
+      path: '/db-view',
+      name: 'db-view',
+      component: dbView
     }
   ]
 })

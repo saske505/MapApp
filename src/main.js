@@ -82,7 +82,19 @@ var vm = new Vue({
   template: '<App/>',
   components: { App },
   firebase: {
-    location: database.ref('location').orderByChild('created_at')
+    location: database.ref('location').orderByChild('created_at'),
+    profiles: {
+      source: database.ref('Profiles'),
+      cancelCallback (err) {
+        console.error(err)
+      }
+    },
+    markers: {
+      source: database.ref('Markers'),
+      cancelCallback (err) {
+        console.error(err)
+      }
+    }
   },
   data: {
     dialog: false
