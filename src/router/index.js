@@ -2,23 +2,26 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '@/components/Home'
-import List from '@/components/List'
+// import List from '@/components/List'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import PostLocation from '@/components/PostLocation'
 import Details from '@/components/Details'
-import firebase from 'firebase'
+// import firebase from 'firebase'
 
 Vue.use(Router)
 
-var router = new Router({
+export default new Router({
+  mode: 'history',
   routes: [
     {
-      path: '*',
-      redirect: '/login'
+      path: '',
+      name: 'home',
+      component: Home
     }, {
       path: '/',
-      redirect: '/login'
+      name: 'home',
+      component: Home
     }, {
       path: '/login',
       name: 'login',
@@ -30,17 +33,7 @@ var router = new Router({
     }, {
       path: '/Home',
       name: 'Home',
-      component: Home,
-      meta: {
-        requiresAuth: true
-      }
-    }, {
-      path: '/list',
-      name: 'List',
-      component: List,
-      meta: {
-        requiresAuth: true
-      }
+      component: Home
     }, {
       path: '/post',
       name: 'PostLocation',
@@ -56,13 +49,11 @@ var router = new Router({
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  let currentUser = firebase.auth().currentUser
-  let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+// router.beforeEach((to, from, next) => {
+  // let currentUser = firebase.auth().currentUser
+  // let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
-  if (requiresAuth && !currentUser) next('login')
-  else if (!requiresAuth && currentUser) next('Home')
-  else next()
-})
-
-export default router
+  // if (requiresAuth && !currentUser) next('login')
+  // else if (!requiresAuth && currentUser) next('Home')
+  // else next()
+// })

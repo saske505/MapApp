@@ -1,12 +1,6 @@
 <template>
-  <div class="text-xs-center">
-    <slot>
-      <v-bottom-sheet v-model="sheet">
-
-        <v-btn slot="activator" color="purple" dark>Click me</v-btn>
-        <v-list>
-          <v-subheader></v-subheader>
           <v-form>
+            <h2>Add marker</h2>
             <v-text-field label="Location"
                           v-model="location"></v-text-field>
             <v-text-field label="Info"
@@ -19,10 +13,6 @@
                       autocomplete></v-select>
             <v-btn color="warning" dark v-on:click="postLocation">Post</v-btn>
           </v-form>
-        </v-list>
-      </v-bottom-sheet>
-      </slot>
-</div>     
 </template>
 <script>
   export default {

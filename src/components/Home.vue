@@ -16,7 +16,7 @@
   import Vue2Leaflet from 'vue2-leaflet'
   import L from 'leaflet'
 
-  delete L.Icon.Default.prototype._getIconUrl
+  delete L.Icon.Default.prototype._getIconUrl // fix missing img markers
 
   L.Icon.Default.mergeOptions({
     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -26,11 +26,12 @@
 
   export default {
     name: 'about',
+    message: 'Hello Vue.js!',
+    title: 'Home page',
     components: {
       'v-map': Vue2Leaflet.Map,
       'v-tilelayer': Vue2Leaflet.TileLayer,
       'v-marker': Vue2Leaflet.Marker
-
     },
     data () {
       return {
@@ -40,9 +41,9 @@
         attribution: '',
         markers: [
           { id: '1', position: {lat: 51.505, lng: -0.09}, tooltip: 'tooltip for marker1', draggable: true, visible: true },
-          { id: '2', position: {lat: 51.895, lng: -0.09}, tooltip: 'tooltip for marker2', draggable: true, visible: false },
+          { id: '2', position: {lat: 51.895, lng: -0.09}, tooltip: 'tooltip for marker2', draggable: true, visible: true },
           { id: '3', position: {lat: 52.005, lng: -0.09}, tooltip: 'tooltip for marker3', draggable: true, visible: true },
-          { id: '4', position: {lat: 53.705, lng: -0.09}, tooltip: 'tooltip for marker4', draggable: true, visible: false }
+          { id: '4', position: {lat: 53.705, lng: -0.09}, tooltip: 'tooltip for marker4', draggable: true, visible: true }
         ]
       }
     },
@@ -80,5 +81,9 @@
     right: 0;
     left: 200px;
     bottom: 0;
+  }
+
+  .leaflet-container {
+    top: 0px;
   }
 </style>
