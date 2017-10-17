@@ -27,7 +27,8 @@ import {
     VBottomSheet,
     VDivider,
     VCheckbox,
-    transitions
+    transitions,
+    vDataTable
 } from 'vuetify'
 
 import App from './App'
@@ -55,7 +56,8 @@ Vue.use(Vuetify, {
     VBottomSheet,
     VDivider,
     VCheckbox,
-    transitions
+    transitions,
+    vDataTable
   }
 })
 
@@ -108,3 +110,5 @@ vm.$mount()
 Vue.component('v-map', Vue2Leaflet.Map)
 Vue.component('v-tilelayer', Vue2Leaflet.TileLayer)
 Vue.component('v-marker', Vue2Leaflet.Marker)
+Vue.component('v-tooltip', Vue2Leaflet.Tooltip)
+Vue.component('v-popup', Vue2Leaflet.Popup)

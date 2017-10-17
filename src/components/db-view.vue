@@ -4,99 +4,35 @@
 <h2>Database view</h2>
 <h2>Profiles</h2>
 
-<tr v-for="user in this.$root.profiles">
-  <td>
-    {{user['.key']}}
-  </td>
-  <td>
-    {{user.created_at}}
-  </td>
-  <td>
-    {{user.email}}
-  </td>
-  <td>
-    {{user.last_login}}
-  </td>
-  <td>
-    {{user.name}}
-  </td>
-  <td>
-    {{user.surname}}
-  </td>
-  <td>
-    {{user.types}}
-  </td>
-</tr>
+<v-data-table
+      v-bind:headers="headersProfiles"
+      v-bind:items="itemsProfiles"
+    >
+    <template slot="items" scope="props">
+      <!-- <td>{{ user.name }}</td> -->
+      <td>{{ props.item['.key'] }}</td>
+      <td>{{ props.item.email }}</td>
+      <td>{{ props.item.created_at }}</td>
+    </template>
+</v-data-table>
 
 <h2>Markers</h2>
 
-<tr v-for="marker in this.$root.markers">
-  <td>
-    {{marker.created_at}}
-  </td>
-  <td>
-    {{marker.location}}
-  </td>
-  <td>
-    <!-- {{user.last_login}} -->
-  </td>
-  <td>
-    <!-- {{user.name}} -->
-  </td>
-  <td>
-    <!-- {{user.surname}} -->
-  </td>
-  <td>
-    <!-- {{user.types}} -->
-  </td>
-</tr>
-
-<v-speed-dial
-      v-model="fab"
-      :top="top"
-      :bottom="bottom"
-      :right="right"
-      :left="left"
-      :direction="direction"
-      :hover="hover"
-      :transition="transition"
+<v-data-table
+      v-bind:headers="headersMarkers"
+      v-bind:items="itemsMarkers"
     >
-      <v-btn
-        slot="activator"
-        color="blue darken-2"
-        dark
-        fab
-        hover
-        v-model="fab"
-      >
-        <v-icon>account_circle</v-icon>
-        <v-icon>close</v-icon>
-      </v-btn>
-      <v-btn
-        fab
-        dark
-        small
-        color="green"
-      >
-        <v-icon>edit</v-icon>
-      </v-btn>
-      <v-btn
-        fab
-        dark
-        small
-        color="indigo"
-      >
-        <v-icon>add</v-icon>
-      </v-btn>
-      <v-btn
-        fab
-        dark
-        small
-        color="red"
-      >
-        <v-icon>delete</v-icon>
-      </v-btn>
-    </v-speed-dial>
+    <template slot="items" scope="props">
+      <!-- <td>{{ user.name }}</td> -->
+      <td>{{ props.item['.key'] }}</td>
+      <td>{{ props.item.description }}</td>
+      <td>{{ props.item.created_at }}</td>
+      <td>{{ props.item.created_by }}</td>
+      <td>{{ props.item.location.lat }} <br /> {{ props.item.location.lng }}</td>
+      <td>{{ props.item.types }}</td>
+      <td>{{ props.item.year }}</td>
+    </template>
+</v-data-table>
 
 </div>
 
@@ -115,6 +51,22 @@ export default {
   },
   data () {
     return {
+      headersProfiles: [
+          { text: 'ID' },
+          { text: 'Email' },
+          { text: 'sss' }
+      ],
+      headersMarkers: [
+          { text: 'ID' },
+          { text: 'Description' },
+          { text: 'Created_at' },
+          { text: 'Created_by' },
+          { text: 'Location' },
+          { text: 'types' },
+          { text: 'year' }
+      ],
+      itemsProfiles: this.$root.profiles,
+      itemsMarkers: this.$root.markers,
       users: {
         'email': this.email,
         'password': this.password

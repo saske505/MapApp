@@ -17,7 +17,7 @@
             <v-icon light v-html="item.icon"></v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title v-text="item.path"></v-list-tile-title>
+            <v-list-tile-title v-text="item.title"></v-list-tile-title>
           </v-list-tile-content>
 
         </v-list-tile>
@@ -25,7 +25,7 @@
         <!-- <v-post></v-post> -->
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar fixed app clipped-left>
+    <v-toolbar fixed app clipped-left color="blue darken-3">
       <v-toolbar-side-icon @click.stop="drawer = !drawer" light></v-toolbar-side-icon>
 
       <v-toolbar-title v-text="title"></v-toolbar-title></v-toolbar-title>
@@ -36,7 +36,7 @@
       <v-content>
               <v-container fluid fill-height>
                 <v-layout justify-center align-center>
-                  <router-view></router-view>
+                      <router-view></router-view>
                 </v-layout>
               </v-container>
       </v-content>
@@ -139,6 +139,6 @@
   @import './stylus/main';
 
   .dialog__container{
-    position: fixed;
+    /*position: fixed;*/
   }
 </style>

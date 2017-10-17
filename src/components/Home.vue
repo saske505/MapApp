@@ -4,7 +4,10 @@
       <v-flex xs12>
         <v-map :zoom="zoom" :center="center">
           <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
-          <v-marker v-for="item in markers" :key="item.id" :lat-lng="item.position" :visible="item.visible"></v-marker>
+          <v-marker v-for="item in markers" :key="item['.key']" :lat-lng="item.location" :visible="item.visible" v-on:l-click="alert(item)">
+            <v-popup :content="customPopup(item)"></v-popup>
+            <!-- <v-tooltip :content="item.tooltip"></v-tooltip> -->
+          </v-marker>
         </v-map>
       </v-flex>
     </v-layout>
@@ -39,19 +42,42 @@
         center: L.latLng(-25.7583818, 27.9177589),
         url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
         attribution: '',
-        markers: [
-          { id: '1', position: {lat: 51.505, lng: -0.09}, tooltip: 'tooltip for marker1', draggable: true, visible: true },
-          { id: '2', position: {lat: 51.895, lng: -0.09}, tooltip: 'tooltip for marker2', draggable: true, visible: true },
-          { id: '3', position: {lat: 52.005, lng: -0.09}, tooltip: 'tooltip for marker3', draggable: true, visible: true },
-          { id: '4', position: {lat: 53.705, lng: -0.09}, tooltip: 'tooltip for marker4', draggable: true, visible: true }
-        ]
+        tooltip: 'test',
+        markers: this.$root.markers
       }
     },
     methods: {
+      customPopup: function (item) {
+        console.log('Data from customPopup')
+        // console.log(this.$data)
+        console.log(item.created_at)
+        return 'Marker' +
+        '<br />' +
+        ' <img src=https://placehold.it/40x40  /> ' +
+        '<br />' +
+         item.created_at +
+         '<br />' +
+         item.created_by +
+         '<br /> ' +
+         item.location.lat +
+         '<br /> ' +
+         item.location.lng +
+         '<br />' +
+         item.description
+      },
+      alert (item) {
+        console.log('this is ' + JSON.stringify(item))
+        // console.log(item.description)
+      },
       logout: function () {
         firebase.auth().signOut().then(() => {
           this.$router.replace('login')
         })
+      }
+    },
+    computed: {
+      ttip: function () {
+        return this.draggable
       }
     }
   }
@@ -65,14 +91,13 @@
     width: 200px;
   }
 
-
   #top_div {
     position: absolute;
     overflow-x: auto;
     top: 0;
     right: 0;
     left: 0;
-   bottom:0;
+    bottom:0;
   }
 
   #bottom_div {

@@ -38,14 +38,15 @@ export default {
     },
     createMarker () {
       console.log('add marker record')
+      console.log(this.$refs)
       this.$root.$firebaseRefs.markers.push(
         {
           'created_at': '9th Feb 2015',
-          'created_by': 'the-id-of-user',
+          'created_by': '-KwEYpEZI6l__y7_vWKF',
           'description': 'Something happened',
           'location': {
-            'x': '800-123-4567',
-            'y': '877-123-1234'
+            'lat': -25.7583818,
+            'lng': 27.9177589
           },
           'types': [
             'Assualt',

@@ -27,6 +27,7 @@
       }
     },
     methods: {
+      valid: function () {},
       signIn: function () {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {
