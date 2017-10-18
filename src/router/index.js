@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Home from '@/components/Home'
 // import List from '@/components/List'
+import map2 from '@/components/map-2'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import PostLocation from '@/components/PostLocation'
@@ -10,6 +11,7 @@ import Details from '@/components/Details'
 // import firebase from 'firebase'
 import dbAdd from '@/components/db-add'
 import dbView from '@/components/db-view'
+import vuex from '@/components/vuex'
 
 Vue.use(Router)
 
@@ -20,6 +22,10 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    }, {
+      path: '/map-2',
+      name: 'map2',
+      component: map2
     }, {
       path: '/login',
       name: 'login',
@@ -51,6 +57,10 @@ export default new Router({
       path: '/db-view',
       name: 'db-view',
       component: dbView
+    }, {
+      path: '/vuex',
+      name: 'vuex',
+      component: vuex
     }
   ]
 })

@@ -65,6 +65,10 @@
           path: '/'
         }, {
           icon: 'room',
+          title: 'Map 2',
+          path: '/map-2'
+        }, {
+          icon: 'room',
           title: 'Map Marker add',
           path: '/PostLocation'
         }, {
@@ -87,6 +91,10 @@
           icon: 'room',
           title: 'View data',
           path: '/db-view'
+        }, {
+          icon: 'room',
+          title: 'Vuex test',
+          path: '/vuex'
         }],
         miniVariant: true,
         right: false,

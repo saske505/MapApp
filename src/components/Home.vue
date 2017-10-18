@@ -56,12 +56,14 @@
         ' <img src=https://placehold.it/40x40  /> ' +
         '<br />' +
          item.created_at +
+        //  '<br />' +
+        //  item.created_by +
+        //  '<br /> ' +
+        //  item.location.lat +
+        //  '<br /> ' +
+        //  item.location.lng +
          '<br />' +
-         item.created_by +
-         '<br /> ' +
-         item.location.lat +
-         '<br /> ' +
-         item.location.lng +
+         item.types +
          '<br />' +
          item.description
       },
