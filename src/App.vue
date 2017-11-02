@@ -65,10 +65,6 @@
           path: '/'
         }, {
           icon: 'room',
-          title: 'Map 2',
-          path: '/map-2'
-        }, {
-          icon: 'room',
           title: 'Map Marker add',
           path: '/PostLocation'
         }, {
