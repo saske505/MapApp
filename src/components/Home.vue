@@ -4,10 +4,12 @@
       <v-flex xs12>
         <v-map :zoom="zoom" :center="center">
           <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
-          <v-marker v-for="item in markers" :key="item['.key']" :lat-lng="item.location" :visible="item.visible" v-on:l-click="alert(item)">
-            <v-popup :content="customPopup(item)"></v-popup>
-            <!-- <v-tooltip :content="item.tooltip"></v-tooltip> -->
-          </v-marker>
+          <v-marker-cluster>
+            <v-marker v-for="item in markers" :key="item['.key']" v-if="item.location !== null" :lat-lng="item.location" :visible="item.visible" v-on:l-click="alert(item)">
+              <v-popup :content="customPopup(item)"></v-popup>
+              <!-- <v-tooltip :content="item.tooltip"></v-tooltip> -->
+            </v-marker>
+          </v-marker-cluster>
         </v-map>
       </v-flex>
     </v-layout>
@@ -18,6 +20,7 @@
   import firebase from 'firebase'
   import Vue2Leaflet from 'vue2-leaflet'
   import L from 'leaflet'
+  import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
 
   delete L.Icon.Default.prototype._getIconUrl // fix missing img markers
 
@@ -34,7 +37,8 @@
     components: {
       'v-map': Vue2Leaflet.Map,
       'v-tilelayer': Vue2Leaflet.TileLayer,
-      'v-marker': Vue2Leaflet.Marker
+      'v-marker': Vue2Leaflet.Marker,
+      'v-marker-cluster': Vue2LeafletMarkerCluster
     },
     data () {
       return {
@@ -87,7 +91,9 @@
 <style>
 
   @import '~leaflet/dist/leaflet.css';
-
+  @import "~leaflet.markercluster/dist/MarkerCluster.css";
+  @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
+  
   #side {
     float: left;
     width: 200px;
