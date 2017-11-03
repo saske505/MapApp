@@ -45,8 +45,8 @@ export default {
           'created_by': '-KwEYpEZI6l__y7_vWKF',
           'description': 'Something happened',
           'location': {
-            'lat': -25.7583818,
-            'lng': 27.9177589
+            'lat': Math.random() - 25,
+            'lng': Math.random() + 28
           },
           'types': [
             'Assualt',

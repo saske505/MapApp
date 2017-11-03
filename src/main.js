@@ -28,7 +28,8 @@ import {
     VDivider,
     VCheckbox,
     transitions,
-    vDataTable
+    vDataTable,
+    vStepper
 } from 'vuetify'
 
 import App from './App'
@@ -57,7 +58,8 @@ Vue.use(Vuetify, {
     VDivider,
     VCheckbox,
     transitions,
-    vDataTable
+    vDataTable,
+    vStepper
   }
 })
 

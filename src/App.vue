@@ -6,6 +6,18 @@
       enable-resize-watcher
       app
     >
+    <v-toolbar flat class="transparent">
+      <v-list class="pa-0">
+        <v-list-tile avatar>
+          <v-list-tile-avatar>
+            <img src="https://randomuser.me/api/portraits/men/85.jpg" />
+          </v-list-tile-avatar>
+          <v-list-tile-content>
+            <v-list-tile-title>Not logged in</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-toolbar>
       <v-list dense>
         <v-list-tile
           value="true"
@@ -14,7 +26,7 @@
           :to="item.path"
         >
           <v-list-tile-action>
-            <v-icon light v-html="item.icon"></v-icon>
+            <v-icon v-html="item.icon" v-bind:color="item.color"></v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title v-text="item.title"></v-list-tile-title>
@@ -64,9 +76,10 @@
           title: 'Home',
           path: '/'
         }, {
-          icon: 'room',
-          title: 'Map Marker add',
-          path: '/PostLocation'
+          icon: 'warning',
+          title: 'Report a crime',
+          path: '/PostLocation',
+          color: 'orange darken-2'
         }, {
           icon: 'vpn_key',
           title: 'Login',

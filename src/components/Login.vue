@@ -1,4 +1,5 @@
 <template>
+  <div>
     <v-form v-model="valid">
       <h2>
         Login
@@ -13,10 +14,22 @@
       <button v-on:click="signIn">Sign in</button>
       <span>Don't have an account yet? <router-link to="/sign-up">create one</router-link> here</span>
     </v-form>
+    <a class="btn-large social facebook pt-2 pb-2">
+      <v-icon>mdi-facebook</v-icon> Sign in with Facebook
+    </a>
+    <br />
+    <br />
+    <a class="btn-large social google pt-2 pb-2">
+      <v-icon>mdi-google</v-icon> Sign in with Google
+    </a>
+
+  </div>
 </template>
 
 <script>
   import firebase from 'firebase'
+  import('@/assets/css/materialdesignicons.min.css')
+  import('../../node_modules/materialize-social/materialize-social.css')
 
   export default {
     name: 'login',

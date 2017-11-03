@@ -2,6 +2,7 @@
   <v-container fluid>
     <v-layout row wrap>
       <v-flex xs12>
+        <mapfilters></mapfilters>
         <v-map :zoom="zoom" :center="center">
           <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
           <v-marker-cluster>
@@ -21,6 +22,7 @@
   import Vue2Leaflet from 'vue2-leaflet'
   import L from 'leaflet'
   import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
+  import mapFilters from './map-filters'
 
   delete L.Icon.Default.prototype._getIconUrl // fix missing img markers
 
@@ -38,12 +40,13 @@
       'v-map': Vue2Leaflet.Map,
       'v-tilelayer': Vue2Leaflet.TileLayer,
       'v-marker': Vue2Leaflet.Marker,
-      'v-marker-cluster': Vue2LeafletMarkerCluster
+      'v-marker-cluster': Vue2LeafletMarkerCluster,
+      'mapfilters': mapFilters
     },
     data () {
       return {
         zoom: 13,
-        center: L.latLng(-25.7583818, 27.9177589),
+        center: L.latLng(-24.7583818, 28.9177589),
         url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
         attribution: '',
         tooltip: 'test',
@@ -55,9 +58,10 @@
         console.log('Data from customPopup')
         // console.log(this.$data)
         console.log(item.created_at)
-        return 'Marker' +
+        return 'Key : ' +
+        item['.key'] +
         '<br />' +
-        ' <img src=https://placehold.it/40x40  /> ' +
+        ' <img src=https://randomuser.me/api/portraits/men/85.jpg class=thumbnail /> ' +
         '<br />' +
          item.created_at +
         //  '<br />' +
@@ -93,7 +97,7 @@
   @import '~leaflet/dist/leaflet.css';
   @import "~leaflet.markercluster/dist/MarkerCluster.css";
   @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
-  
+
   #side {
     float: left;
     width: 200px;
