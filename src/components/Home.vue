@@ -23,6 +23,23 @@
   import L from 'leaflet'
   import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
   import mapFilters from './map-filters'
+  // import { OpenStreetMapProvider } from 'leaflet-geosearch'
+
+  // Geo reverse
+
+  // const provider = new OpenStreetMapProvider()
+  //
+  // const form = document.querySelector('form')
+  // const input = form.querySelector('input[type="text"]')
+  //
+  // form.addEventListener('submit', (event) => {
+  //   event.preventDefault()
+  //   provider.search({ query: input.value }).then((results) => {
+  //     console.log(results)
+  //   })
+  // })
+
+  // End geo reverse
 
   delete L.Icon.Default.prototype._getIconUrl // fix missing img markers
 

@@ -10,7 +10,7 @@ import Details from '@/components/Details'
 // import firebase from 'firebase'
 import dbAdd from '@/components/db-add'
 import dbView from '@/components/db-view'
-import vuex from '@/components/vuex'
+// import vuex from '@/components/vuex'
 
 Vue.use(Router)
 
@@ -19,23 +19,19 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
-    }, {
-      path: '/login',
-      name: 'login',
-      component: Login
-    }, {
-      path: '/sign-up',
-      name: 'signUp',
-      component: SignUp
-    }, {
-      path: '/Home',
       name: 'Home',
       component: Home
     }, {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    }, {
+      path: '/sign-up',
+      name: 'SignUp',
+      component: SignUp
+    }, {
       path: '/postLocation',
-      name: 'PostLocation',
+      name: 'Report a crime',
       component: PostLocation,
       meta: {
         requiresAuth: true
@@ -52,10 +48,6 @@ export default new Router({
       path: '/db-view',
       name: 'db-view',
       component: dbView
-    }, {
-      path: '/vuex',
-      name: 'vuex',
-      component: vuex
     }
   ]
 })

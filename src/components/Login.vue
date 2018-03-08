@@ -1,27 +1,28 @@
 <template>
   <div>
     <v-form v-model="valid">
-      <h2>
-        Login
-      </h2>
       <v-text-field label="Email"
                     v-model="email"
-                    :counter="10"
                     required></v-text-field>
       <v-text-field label="Password"
                     v-model="password"
                     required></v-text-field>
-      <button v-on:click="signIn">Sign in</button>
-      <span>Don't have an account yet? <router-link to="/sign-up">create one</router-link> here</span>
+      <v-btn color='primary' v-on:click="signIn">Login</v-btn>
+      <br />
+      <p>Don't have an account yet? <router-link to="/sign-up">Create one</router-link></p>
     </v-form>
-    <a class="btn-large social facebook pt-2 pb-2">
-      <v-icon>mdi-facebook</v-icon> Sign in with Facebook
-    </a>
-    <br />
-    <br />
-    <a class="btn-large social google pt-2 pb-2">
-      <v-icon>mdi-google</v-icon> Sign in with Google
-    </a>
+     <v-card>
+       <v-card-text>
+         <a class="btn-large social facebook pt-2 pb-2">
+            <v-icon>mdi-facebook</v-icon> Sign in with Facebook
+         </a>
+         <br />
+         <br />
+         <a class="btn-large social google pt-2 pb-2">
+           <v-icon>mdi-google</v-icon> Sign in with Google
+         </a>
+       </v-card-text>
+     </v-card>
 
   </div>
 </template>
@@ -40,7 +41,9 @@
       }
     },
     methods: {
-      valid: function () {},
+      valid: function (value) {
+        console.log('hello from form')
+      },
       signIn: function () {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {

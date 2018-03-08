@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "firebase": "4.5.0",
+    "leaflet-geosearch": "^2.6.0",
     "materialize-social": "^1.0.3",
     "sw-precache-webpack-plugin": "^0.11.4",
     "vue": "^2.4.2",

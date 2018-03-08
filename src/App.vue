@@ -10,7 +10,8 @@
       <v-list class="pa-0">
         <v-list-tile avatar>
           <v-list-tile-avatar>
-            <img src="https://randomuser.me/api/portraits/men/85.jpg" />
+            <!-- <img src="https://randomuser.me/api/portraits/men/85.jpg" /> -->
+               <v-icon large color='blue'>account_circle</v-icon>
           </v-list-tile-avatar>
           <v-list-tile-content>
             <v-list-tile-title>Not logged in</v-list-tile-title>
@@ -40,7 +41,7 @@
     <v-toolbar fixed app clipped-left color="blue darken-3">
       <v-toolbar-side-icon @click.stop="drawer = !drawer" light></v-toolbar-side-icon>
 
-      <v-toolbar-title v-text="title"></v-toolbar-title></v-toolbar-title>
+      <v-toolbar-title>{{ this.$route.name }}</v-toolbar-title>
       <v-spacer></v-spacer></v-spacer>
 
     </v-toolbar>
@@ -48,7 +49,7 @@
       <v-content>
               <v-container fluid fill-height>
                 <v-layout justify-center align-center>
-                      <router-view></router-view>
+                    <router-view></router-view>
                 </v-layout>
               </v-container>
       </v-content>
@@ -78,8 +79,8 @@
         }, {
           icon: 'warning',
           title: 'Report a crime',
-          path: '/PostLocation',
-          color: 'orange darken-2'
+          path: '/PostLocation'
+          // color: 'orange darken-2'
         }, {
           icon: 'vpn_key',
           title: 'Login',
@@ -88,10 +89,10 @@
           icon: 'perm_identity',
           title: 'Sign-Up',
           path: '/sign-up'
-        }, {
-          icon: 'forum',
-          title: 'Chat',
-          path: '/chat'
+        // }, {
+        //   icon: 'forum',
+        //   title: 'Chat',
+        //   path: '/chat'
         }, {
           icon: 'room',
           title: 'Create data',
@@ -100,10 +101,6 @@
           icon: 'room',
           title: 'View data',
           path: '/db-view'
-        }, {
-          icon: 'room',
-          title: 'Vuex test',
-          path: '/vuex'
         }],
         miniVariant: true,
         right: false,
@@ -147,6 +144,9 @@
     },
     mounted () {
       this.saveLocationsToCache()
+    },
+    created () {
+      console.log(this.$router.options.routes)
     }
 }
 
@@ -155,7 +155,10 @@
 <style lang="stylus">
   @import './stylus/main';
 
+  html { overflow-y: scroll !important; }
+
   .dialog__container{
     /*position: fixed;*/
   }
+
 </style>
