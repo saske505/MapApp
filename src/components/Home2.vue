@@ -21,8 +21,8 @@
                       :visible="item.visible"
                       :draggable="true"
                       :tooltip="item.tooltip">
-               <v-popup :content="item.tooltip">
-               </v-popup>
+               <!-- <v-popup :content="item.tooltip"> -->
+               <!-- </v-popup> -->
             </v-marker>
           </v-map>
         </v-flex>
@@ -32,7 +32,6 @@
             <v-text-field
               label="Street name"
               v-model="compGeo"
-              :error-messages="nameErrors"
               @input="$v.name.$touch()"
               @blur="$v.name.$touch()"
               required
@@ -58,10 +57,8 @@
         v-model="types"
         label="Category"
         autocomplete></v-select>
-                <v-text-field textarea label="Aditional information"
-                v-model="info"></v-text-field>
-                <v-text-field date-with-time label="More"
-                v-model="more"></v-text-field>
+                <v-text-field textarea label="Aditional information"></v-text-field>
+                <v-text-field label="Date" ></v-text-field>
 
                 <!-- <v-btn color="warning" dark v-on:click="postLocation">Post</v-btn> -->
               </v-form>
@@ -72,7 +69,7 @@
 </template>
 
 <script>
-  import firebase from 'firebase'
+  // import firebase from 'firebase'
   // import Vue from 'vue'
   import Vue2Leaflet from 'vue2-leaflet'
   import L from 'leaflet'
@@ -123,13 +120,14 @@
         attribution: '',
         markers: [
           { id: '1', position: {lat: 51.505, lng: -0.09}, tooltip: 'tooltip for marker1', draggable: true, visible: true },
-          { id: '2', position: {lat: 51.895, lng: -0.09}, tooltip: 'tooltip for marker2', draggable: true, visible: true },
-          { id: '3', position: {lat: 52.005, lng: -0.09}, tooltip: 'tooltip for marker3', draggable: true, visible: true },
-          { id: '4', position: {lat: -30.705, lng: 20.09}, tooltip: 'tooltip for marker4', draggable: true, visible: true }
+          { id: '2', position: {lat: 51.895, lng: -0.09}, tooltip: 'tooltip for marker2', draggable: true, visible: true }
         ],
         items: [
           'murder', 'rape', 'robbery', 'shooting', 'heist'
-        ]
+        ],
+        date: null,
+        menu: false,
+        modal: false
       }
     },
     methods: {
@@ -174,16 +172,6 @@
          item.types +
          '<br />' +
          item.description
-      },
-      alert (item) {
-        console.log('this is ' + JSON.stringify(item))
-        console.log(provider)
-        // console.log(item.description)
-      },
-      logout: function () {
-        firebase.auth().signOut().then(() => {
-          this.$router.replace('login')
-        })
       }
     },
     computed: {
