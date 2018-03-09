@@ -32,9 +32,6 @@
             <v-text-field
               label="Street name"
               v-model="compGeo"
-              @input="$v.name.$touch()"
-              @blur="$v.name.$touch()"
-              required
             ></v-text-field>
             <span v-for='item in geoName'>
               {{ item.label }}
@@ -54,7 +51,6 @@
 
       <v-form>
         <v-select v-bind:items="items"
-        v-model="types"
         label="Category"
         autocomplete></v-select>
                 <v-text-field textarea label="Aditional information"></v-text-field>
@@ -142,7 +138,7 @@
               'x': '800-123-4567',
               'y': '877-123-1234'
             },
-            'geoName': 'something',
+            // 'geoName': 'something',
             'types': [
               'Assualt',
               'Robbery'
@@ -150,6 +146,17 @@
             'year': '2006'
           }
         )
+      },
+      changedCenter: function () {
+        this.compCenter = this.$refs.myMap.mapObject.getCenter()
+        // console.log('Method changedCenter ' + this.myCenter)
+        // this.$refs.myMap.mapObject.setView(new L.LatLng(40.737, -73.923, 3))
+        console.log('Method changeCenter')
+        // console.log(this.compCenter.lng)
+      },
+      changedZoom: function () {
+        this.compZoom = this.$refs.myMap.mapObject._zoom
+        console.log('zoom change detected, setting zoom to ' + this.compZoom)
       },
       customPopup: function (item) {
         // console.log('Data from customPopup')
@@ -169,7 +176,7 @@
         //  '<br /> ' +
         //  item.location.lng +
          '<br />' +
-         item.types +
+         // item.types +
          '<br />' +
          item.description
       }
@@ -184,7 +191,7 @@
           console.log(value)
         },
         set: function (value) {
-          console.log('setting')
+          // console.log('setting')
           provider.search({ query: value }).then((results) => {
             console.log(results)
             this.geoName = results
