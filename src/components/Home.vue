@@ -6,10 +6,7 @@
         <v-map :zoom="zoom" :center="center">
           <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
           <v-marker-cluster>
-            <v-marker v-for="item in markers" :key="item['.key']" v-if="item.location !== null" :lat-lng="item.location" :visible="item.visible" v-on:l-click="alert(item)">
-              <v-popup :content="customPopup(item)"></v-popup>
-              <!-- <v-tooltip :content="item.tooltip"></v-tooltip> -->
-            </v-marker>
+          
           </v-marker-cluster>
         </v-map>
       </v-flex>

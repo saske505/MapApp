@@ -6,7 +6,7 @@
       enable-resize-watcher
       app
     >
-    <v-toolbar flat class="transparent">
+    <v-toolbar v-if="currentUser" flat class="transparent">
       <v-list class="pa-0">
         <v-list-tile avatar>
           <v-list-tile-avatar>
@@ -14,9 +14,10 @@
                <v-icon large color='blue'>account_circle</v-icon>
           </v-list-tile-avatar>
           <v-list-tile-content>
-            <v-list-tile-title>Anon</v-list-tile-title>
+            <v-list-tile-title>{{this.profile.email}}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+        <v-btn @click="logout" color="primary">Log out</v-btn>
       </v-list>
     </v-toolbar>
       <v-list dense>
@@ -32,7 +33,6 @@
           <v-list-tile-content>
             <v-list-tile-title v-text="item.title"></v-list-tile-title>
           </v-list-tile-content>
-
         </v-list-tile>
 
         <!-- <v-post></v-post> -->
@@ -62,6 +62,8 @@
 </template>
 <script>
   import { reduce } from 'lodash'
+  import firebase from 'firebase'
+  import user from './router/index'
   // import Post from '@/components/PostLocation'
   export default {
     components: {
@@ -69,22 +71,27 @@
     },
     data () {
       return {
-        clipped: true,
-        drawer: true,
+        currentUser: false,
+        profile: false,
+        clipped: false,
+        drawer: false,
         fixed: false,
         items: [{
           icon: 'home',
           title: 'Home',
-          path: '/'
+          path: '/',
+          show: false
         }, {
           icon: 'home',
           title: 'Home2',
           path: '/home2',
-          color: 'orange darken-2'
+          color: 'orange darken-2',
+          show: false
         }, {
           icon: 'warning',
           title: 'Report a crime',
-          path: '/PostLocation'
+          path: '/PostLocation',
+          show: false
           // color: 'orange darken-2'
         }, {
           icon: 'vpn_key',
@@ -97,15 +104,19 @@
         }, {
           icon: 'room',
           title: 'Create data',
-          path: '/db-add'
+          path: '/db-add',
+          show: false
         }, {
           icon: 'room',
           title: 'View data',
-          path: '/db-view'
+          path: '/db-view',
+          show: false
         }, {
           icon: 'forum',
           title: 'Stats',
-          path: '/Stats'
+          path: '/Stats',
+          show: false
+
         }],
         miniVariant: true,
         right: false,
@@ -145,13 +156,28 @@
           })
           localStorage.setItem('locations', JSON.stringify(cachedLocations))
         })
+      },
+      logout () {
+        firebase.auth().signOut().then(() => {
+          this.$router.replace('login')
+          this.user = false
+        })
+      },
+      isloggedin () {
+        if (user.apps[0].user.email !== null || user !== 'undefined') {
+          this.currentUser = true
+          this.profile = user.apps[0].user
+        } else {
+          this.currentUser = false
+          this.profile = null
+        }
       }
     },
     mounted () {
       this.saveLocationsToCache()
     },
     created () {
-      console.log(this.$router.options.routes)
+      this.isloggedin()
     }
 }
 

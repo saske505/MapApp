@@ -4,7 +4,7 @@
 
     <h5>Profiles</h5>
     <v-data-table v-bind:headers="headersProfiles" v-bind:items="itemsProfiles">
-      <template slot="items" scope="props">
+      <template slot="items">
         <!-- <td>{{ user.name }}</td> -->
         <td>{{ props.item['.key'] }}</td>
         <td>{{ props.item.email }}</td>
@@ -14,7 +14,7 @@
 
     <h5>Markers</h5>
     <v-data-table v-bind:headers="headersMarkers" v-bind:items="itemsMarkers">
-      <template slot="items" scope="props">
+      <template slot="items">
         <!-- <td>{{ user.name }}</td> -->
         <td>{{ props.item['.key'] }}</td>
         <td>{{ props.item.description }}</td>

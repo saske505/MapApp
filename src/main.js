@@ -65,7 +65,7 @@ Vue.use(Vuetify, {
 
 Vue.config.productionTip = false
 
-// let app
+let vm
 let config = {
   apiKey: 'AIzaSyDIyRzOXRYzriVjb3DnqBoRMQdF1hvcMWI',
   authDomain: 'cropchat-a6b10.firebaseapp.com',
@@ -76,39 +76,41 @@ let config = {
 }
 
 firebase.initializeApp(config)
+firebase.auth().onAuthStateChanged(function (user) {
+  if (!vm) {
+    vm = new Vue({
+      el: '#app',
+      router,
+      template: '<App/>',
+      components: { App },
+      firebase: {
+        location: database.ref('location').orderByChild('created_at'),
+        profiles: {
+          source: database.ref('Profiles'),
+          cancelCallback (err) {
+            console.error(err)
+          }
+        },
+        markers: {
+          source: database.ref('Markers'),
+          cancelCallback (err) {
+            console.error(err)
+          }
+        }
+      },
+      data: {
+        dialog: false,
+        user: firebase.auth().currentUser
+      }
+    })
+  }
+})
 let database = firebase.database()
 // firebase.auth().onAuthStateChanged(function (user) {
 // if (!app) {
 /* eslint-disable no-new */
-var vm = new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App },
-  firebase: {
-    location: database.ref('location').orderByChild('created_at'),
-    profiles: {
-      source: database.ref('Profiles'),
-      cancelCallback (err) {
-        console.error(err)
-      }
-    },
-    markers: {
-      source: database.ref('Markers'),
-      cancelCallback (err) {
-        console.error(err)
-      }
-    }
-  },
-  data: {
-    dialog: false
-  }
-})
 // }
 // })
-
-vm.$mount()
-
 Vue.component('v-map', Vue2Leaflet.Map)
 Vue.component('v-tilelayer', Vue2Leaflet.TileLayer)
 Vue.component('v-marker', Vue2Leaflet.Marker)

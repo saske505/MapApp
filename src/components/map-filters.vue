@@ -30,7 +30,7 @@
         { icon: 'list', title: 'Confirmed' },
         { icon: 'home', title: 'Option1' },
         { icon: 'warning', title: 'Option2' },
-        { icon: 'edit', title: 'Option2' }
+        { icon: 'edit', title: 'Option3' }
       ]
     })
   }

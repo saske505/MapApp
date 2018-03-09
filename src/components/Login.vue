@@ -6,7 +6,8 @@
                     required></v-text-field>
       <v-text-field label="Password"
                     v-model="password"
-                    required></v-text-field>
+                    required
+                    type="password"></v-text-field>
       <v-btn color='primary' v-on:click="signIn">Login</v-btn>
       <br />
       <p>Don't have an account yet? <router-link to="/sign-up">Create one</router-link></p>
@@ -47,7 +48,7 @@
       signIn: function () {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {
-            this.$router.replace('Home')
+            this.$router.replace('home')
           },
           (err) => {
             alert('ooops' + err.message)
