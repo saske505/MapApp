@@ -11,7 +11,6 @@
 
  </v-layout>
 
-
       <v-container fluid>
 
         <v-radio-group v-model="column" column>

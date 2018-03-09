@@ -77,7 +77,7 @@
           title: 'Home',
           path: '/'
         }, {
-          icon: 'warning',
+          icon: 'report',
           title: 'Report a crime',
           path: '/PostLocation'
           // color: 'orange darken-2'
