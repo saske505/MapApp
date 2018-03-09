@@ -21,6 +21,7 @@
         <td>{{ props.item.created_at }}</td>
         <td>{{ props.item.created_by }}</td>
         <td>{{ props.item.location.lat }} <br /> {{ props.item.location.lng }}</td>
+        <!-- <td>{{ props.item.location.country }}</td> -->
         <td>
           <span v-for="item in props.item.types">
             {{ item }}

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '@/components/Home'
+import Home2 from '@/components/Home2'
 // import List from '@/components/List'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
@@ -10,6 +11,7 @@ import Details from '@/components/Details'
 // import firebase from 'firebase'
 import dbAdd from '@/components/db-add'
 import dbView from '@/components/db-view'
+import stats from '@/components/stats'
 // import vuex from '@/components/vuex'
 
 Vue.use(Router)
@@ -21,6 +23,10 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    }, {
+      path: '/Home2',
+      name: 'Home2',
+      component: Home2
     }, {
       path: '/login',
       name: 'Login',
@@ -48,6 +54,10 @@ export default new Router({
       path: '/db-view',
       name: 'db-view',
       component: dbView
+    }, {
+      path: '/stats',
+      name: 'stats',
+      component: stats
     }
   ]
 })

@@ -14,7 +14,7 @@
                <v-icon large color='blue'>account_circle</v-icon>
           </v-list-tile-avatar>
           <v-list-tile-content>
-            <v-list-tile-title>Not logged in</v-list-tile-title>
+            <v-list-tile-title>Anon</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -77,6 +77,11 @@
           title: 'Home',
           path: '/'
         }, {
+          icon: 'home',
+          title: 'Home2',
+          path: '/home2',
+          color: 'orange darken-2'
+        }, {
           icon: 'warning',
           title: 'Report a crime',
           path: '/PostLocation'
@@ -89,10 +94,6 @@
           icon: 'perm_identity',
           title: 'Sign-Up',
           path: '/sign-up'
-        // }, {
-        //   icon: 'forum',
-        //   title: 'Chat',
-        //   path: '/chat'
         }, {
           icon: 'room',
           title: 'Create data',
@@ -101,6 +102,10 @@
           icon: 'room',
           title: 'View data',
           path: '/db-view'
+        }, {
+          icon: 'forum',
+          title: 'Stats',
+          path: '/Stats'
         }],
         miniVariant: true,
         right: false,

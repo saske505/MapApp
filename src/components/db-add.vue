@@ -13,8 +13,9 @@
 </template>
 
 <script>
-// import VueFire from 'vuefire'
-// import {db} from '@/firebase'
+// import { OpenStreetMapProvider } from 'leaflet-geosearch'
+
+// const provider = new OpenStreetMapProvider()
 
 export default {
   name: 'db-add',
@@ -46,7 +47,8 @@ export default {
           'description': 'Something happened',
           'location': {
             'lat': Math.random() - 25,
-            'lng': Math.random() + 28
+            'lng': Math.random() + 28,
+            'province': 'test'
           },
           'types': [
             'Assualt',
