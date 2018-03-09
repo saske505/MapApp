@@ -77,11 +77,6 @@
           title: 'Home',
           path: '/'
         }, {
-          icon: 'home',
-          title: 'Home2',
-          path: '/home2',
-          color: 'orange darken-2'
-        }, {
           icon: 'warning',
           title: 'Report a crime',
           path: '/PostLocation'

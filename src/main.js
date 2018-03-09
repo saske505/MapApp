@@ -31,7 +31,8 @@ import {
     vDataTable,
     vStepper,
     VDatePicker,
-    VTimePicker
+    VTimePicker,
+    VRadioGroup
 } from 'vuetify'
 
 import App from './App'
@@ -63,7 +64,8 @@ Vue.use(Vuetify, {
     vDataTable,
     vStepper,
     VDatePicker,
-    VTimePicker
+    VTimePicker,
+    VRadioGroup
   }
 })
 
