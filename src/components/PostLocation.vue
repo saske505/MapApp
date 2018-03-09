@@ -13,7 +13,7 @@
 
       <v-container fluid>
 
-        <v-radio-group v-model="column" column>
+        <v-radio-group v-model="postas">
           <p>Post this incident as </p>
 
      <v-radio label="Anonomous" value="Anonomous" ></v-radio>
@@ -117,7 +117,7 @@
 
      <v-form>
        <v-select v-bind:items="items" label="Category" autocomplete multiple></v-select>
-       <v-btn color="green" dark v-on:click="">Complete submission</v-btn>
+       <v-btn large block color="green" dark v-on:click="">Complete submission</v-btn>
      </v-form>
    </v-flex xs6>
    <v-flex xs6>
@@ -191,7 +191,8 @@
         time: new Date(),
         date: null,
         menu: false,
-        modal: false
+        modal: false,
+        postas: ''
       }
     },
     methods: {
@@ -255,7 +256,7 @@
       },
       compGeo: {
         get: function (value) {
-          console.log('getting')
+          console.log('Lookingup geo locations')
           console.log(value)
         },
         set: function (value) {
