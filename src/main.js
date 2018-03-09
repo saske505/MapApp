@@ -29,7 +29,9 @@ import {
     VCheckbox,
     transitions,
     vDataTable,
-    vStepper
+    vStepper,
+    VDatePicker,
+    VTimePicker
 } from 'vuetify'
 
 import App from './App'
@@ -59,7 +61,9 @@ Vue.use(Vuetify, {
     VCheckbox,
     transitions,
     vDataTable,
-    vStepper
+    vStepper,
+    VDatePicker,
+    VTimePicker
   }
 })
 

@@ -1,6 +1,7 @@
 <template>
 
     <v-container grid-list-md text-xs-center>
+
      <v-layout row wrap>
 
         <v-flex xs12>
@@ -49,17 +50,61 @@
          </v-card>
        </v-flex>
 
-      <v-form>
-        <v-select v-bind:items="items"
-        label="Category"
-        autocomplete></v-select>
-                <v-text-field textarea label="Aditional information"></v-text-field>
-                <v-text-field label="Date" ></v-text-field>
 
-                <!-- <v-btn color="warning" dark v-on:click="postLocation">Post</v-btn> -->
-              </v-form>
 
     </v-layout>
+
+    <v-layout row wrap>
+
+      <v-dialog
+          ref="dialog"
+          persistent
+          v-model="modal"
+          lazy
+          full-width
+          width="290px"
+          :return-value.sync="date"
+        >
+
+                <v-text-field
+                  slot="activator"
+                  label="Select date"
+                  v-model="date"
+                  prepend-icon="event"
+
+                ></v-text-field>
+
+          <v-date-picker v-model="date" >
+          </v-date-picker>
+          <v-btn color="" @click="modal = false">OK</v-btn>
+          <v-btn color="primary" @click="modal = false">Cancel</v-btn>
+        </v-dialog>
+
+
+<v-flex xs6>
+
+  <v-text-field
+       label="Select time"
+       value="12:30:00"
+       type="time"
+       suffix=""
+       prepend-icon="time"
+     ></v-text-field>
+
+</v-flex xs6>
+<v-flex xs6>
+
+     <v-form>
+       <v-select v-bind:items="items"
+       label="Category"
+       autocomplete></v-select>
+               <v-text-field textarea label="Aditional information"></v-text-field>
+
+               <v-btn color="warning" dark v-on:click="">Post</v-btn>
+             </v-form>
+
+</v-flex>
+</v-layout>
 
   </v-container>
 </template>
@@ -121,6 +166,7 @@
         items: [
           'murder', 'rape', 'robbery', 'shooting', 'heist'
         ],
+        time: new Date(),
         date: null,
         menu: false,
         modal: false
