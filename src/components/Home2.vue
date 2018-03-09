@@ -13,7 +13,7 @@
 
      <v-layout row wrap>
         <v-flex xs6>
-          <v-map class="test" ref="myMap" :zoom="myZoom" :center="myCenter" v-on:l-mousemove="" v-on:l-zoom="changedZoom()" v-on:l-moveend="changedCenter()">
+          <v-map class="mini-map" ref="myMap" :zoom="myZoom" :center="myCenter" v-on:l-mousemove="" v-on:l-zoom="changedZoom()" v-on:l-moveend="changedCenter()">
             <v-tilelayer :url="url" :attribution="attribution" ></v-tilelayer>
             <v-marker v-for="item in markers"
                       :key="item.id"
@@ -28,68 +28,44 @@
         </v-flex>
 
         <v-flex xs6>
-        <form>
-        <v-text-field
-          label="Name"
-          v-model="name"
-          :error-messages="nameErrors"
-          :counter="10"
-          @input="$v.name.$touch()"
-          @blur="$v.name.$touch()"
-          required
-        ></v-text-field>
-        <v-text-field
-          label="E-mail"
-          v-model="email"
-          :error-messages="emailErrors"
-          @input="$v.email.$touch()"
-          @blur="$v.email.$touch()"
-          required
-        ></v-text-field>
-        <v-select
-          label="Item"
-          v-model="select"
-          :items="items"
-          :error-messages="selectErrors"
-          @change="$v.select.$touch()"
-          @blur="$v.select.$touch()"
-          required
-        ></v-select>
-        <v-checkbox
-          label="Do you agree?"
-          v-model="checkbox"
-          :error-messages="checkboxErrors"
-          @change="$v.checkbox.$touch()"
-          @blur="$v.checkbox.$touch()"
-          required
-        ></v-checkbox>
-
-        <v-btn color="primary">Primary</v-btn>
-        <v-btn @click="submit">submit</v-btn>
-        <v-btn @click="clear">clear</v-btn>
-        </form>
-      </v-flex>
-
-        <p>
-             Geo Reverse <input v-model="compGeo">
-             <br />
-             <span v-for='item in geoName'>
-               {{ item.label }} <br />
-               {{ item.x}}
-             </span>
-        </p>
-
-        <button @click="createMarker">upload</button>
+          <form>
+            <v-text-field
+              label="Street name"
+              v-model="compGeo"
+              :error-messages="nameErrors"
+              @input="$v.name.$touch()"
+              @blur="$v.name.$touch()"
+              required
+            ></v-text-field>
+            <span v-for='item in geoName'>
+              {{ item.label }}
+            </span>
+          </form>
+        </v-flex>
 
       </v-flex>
     </v-layout>
 
-    <v-layout row fill-height>
-      <v-flex xs12>
-        <v-card dark color="primary">
-          <v-card-text class="px-0">Form</v-card-text>
-        </v-card>
-      </v-flex>
+      <v-layout row wrap>
+       <v-flex xs12>
+         <v-card dark color="primary">
+           <v-card-text class="px-0">Incident details</v-card-text>
+         </v-card>
+       </v-flex>
+
+      <v-form>
+        <v-select v-bind:items="items"
+        v-model="types"
+        label="Category"
+        autocomplete></v-select>
+                <v-text-field textarea label="Aditional information"
+                v-model="info"></v-text-field>
+                <v-text-field date-with-time label="More"
+                v-model="more"></v-text-field>
+
+                <!-- <v-btn color="warning" dark v-on:click="postLocation">Post</v-btn> -->
+              </v-form>
+
     </v-layout>
 
   </v-container>
@@ -150,6 +126,9 @@
           { id: '2', position: {lat: 51.895, lng: -0.09}, tooltip: 'tooltip for marker2', draggable: true, visible: true },
           { id: '3', position: {lat: 52.005, lng: -0.09}, tooltip: 'tooltip for marker3', draggable: true, visible: true },
           { id: '4', position: {lat: -30.705, lng: 20.09}, tooltip: 'tooltip for marker4', draggable: true, visible: true }
+        ],
+        items: [
+          'murder', 'rape', 'robbery', 'shooting', 'heist'
         ]
       }
     },
@@ -237,10 +216,11 @@
     /* margin-right:20px; */
     /* clear:right; */
   }
-  .test {
+  .mini-map {
     /* border: solid 2px red !important; */
-    height: 250px !important;
-    width: 250px;
+    height: 200px !important;
+    width: 90%;
+    margin-bottom: 40px;
     /* margin-top: 150px; */
   }
 </style>
