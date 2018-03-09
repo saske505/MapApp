@@ -21,7 +21,8 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      color: '#000'
     }, {
       path: '/login',
       name: 'Login',

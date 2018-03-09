@@ -1,11 +1,13 @@
 <template>
-  <v-app light>
+  <v-app dark>
+
     <v-navigation-drawer
       clipped
       v-model="drawer"
       enable-resize-watcher
       app
     >
+
     <v-toolbar flat class="transparent">
       <v-list class="pa-0">
         <v-list-tile avatar>
@@ -18,6 +20,9 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
+
+
+
     </v-toolbar>
       <v-list dense>
         <v-list-tile
@@ -39,7 +44,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar fixed app clipped-left color="blue darken-3">
-      <v-toolbar-side-icon @click.stop="drawer = !drawer" light></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer" dark></v-toolbar-side-icon>
 
       <v-toolbar-title>{{ this.$route.name }}</v-toolbar-title>
       <v-spacer></v-spacer></v-spacer>
@@ -55,9 +60,7 @@
       </v-content>
 
     </main>
-    <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
-    </v-footer>
+
   </v-app>
 </template>
 <script>
